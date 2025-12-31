@@ -17,8 +17,9 @@ RUN npm ci
 # Copy frontend source
 COPY apps/frontend/ ./
 
-# Set environment variable for production build
-ENV NEXT_PUBLIC_API_URL=http://localhost:8000
+# Set environment variable for production build (configurable via build arg)
+ARG NEXT_PUBLIC_API_URL=http://localhost:8000
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 # Build the frontend
 RUN npm run build
